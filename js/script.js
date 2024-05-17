@@ -98,7 +98,7 @@ sendFileByUrlBtn.onclick = function () {
             readonlyText.textContent = "Something went wrong! Status: " + this.status;
         }
     };
-    // request
+    //  request
     // POST {{apiUrl}}/waInstance{{idInstance}}/sendFileByUrl/{{apiTokenInstance}}
     xhttp.open("POST", apiUrl +
         "/waInstance" +
