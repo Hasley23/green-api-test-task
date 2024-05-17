@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GREEN-API</title>
+    <title>TEST-TASK</title>
     <link rel="icon" href="./icon.png">
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -14,27 +14,33 @@
     <table class="columns">
         <tr>
             <td>
-                <input type="text" placeholder="idInstance">
-                <input type="text" placeholder="ApiTokenInstance">
-                <button id="get-settings">getSettings</button>
-                <button id="get-state-instance">getStateInstance</button>
+                <input type="text" placeholder="idInstance" id="input-id-instance" value="1103937541">
+                <input type="text" placeholder="ApiTokenInstance" id="input-api-token-instance"
+                    value="0107ce7bf10d4217b70ea42edb17784ecf333f0a505c41888c">
+                <button id="get-settings-btn">getSettings</button>
+                <button id="get-state-instance-btn">getStateInstance</button>
                 <br>
-                <input type="number" placeholder="77771234567">
-                <textarea placeholder="Hello World!"></textarea>
-                <button id="send-message">sendMessage</button>
+                <input type="number" placeholder="77771234567" id="input-message-number">
+                <textarea placeholder="Hello World!" id="textarea-message"></textarea>
+                <button id="send-message-btn">sendMessage</button>
                 <br>
-                <input type="number" placeholder="77771234567">
-                <input type="text" placeholder="https://my.site.com/img/horse.png">
+                <input type="number" placeholder="77771234567" id="input-file-url-number">
+                <input type="text" placeholder="https://my.site.com/img/horse.png" id="input-file-url">
                 <button id="send-file-by-url">sendFileByUrl</button>
             </td>
             <td class="code-window">
                 <p class="response-name"><strong>Ответ:</strong></p>
-                <div class="right-column">
-                    <p class="response">{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"key":"value"<br>}</p>
+                <div class="right-column" id="json">
+                    <pre class="response" id="readonly-text"></pre>
                 </div>
             </td>
         </tr>
     </table>
 </body>
+
+<script type="text/javascript"
+    src="https://unpkg.com/@green-api/whatsapp-api-client/lib/whatsapp-api-client.min.js"></script>
+
+<script type="text/javascript" src="/js/script.js"></script>
 
 </html>

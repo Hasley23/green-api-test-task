@@ -61,7 +61,8 @@ textarea {
 }
 
 .response {
-    display: flex;
+    display: block;
+    width: 10;
 }
 
 .right-column {
