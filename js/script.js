@@ -111,10 +111,3 @@ sendFileByUrlBtn.onclick = function () {
         + "@c.us\", \"urlFile\": \"" + inputFileUrl.value + "\", "
         + "\"fileName\":" + " \"image\", " + "\"caption\": \"image\" }");
 }
-
-function test() {
-    console.log("{ \"chatId\": \"" + inputFileUrlNumber.value
-        + "@c.us\", \"urlFile\": \"" + inputFileUrl.value + "\", "
-        + "\"fileName\":" + " \"image\", " + "\"caption\": \"image\" }");
-}
-
