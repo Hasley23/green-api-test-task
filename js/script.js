@@ -1,5 +1,3 @@
-let apiUrl = "https://api.green-api.com";
-
 // inputs
 let inputIdInstance = document.querySelector("#input-id-instance");
 let inputApiTokenInstance = document.querySelector("#input-api-token-instance");
@@ -20,96 +18,53 @@ let sendFileByUrlBtn = document.querySelector("#send-file-by-url");
 // readonly text
 let readonlyText = document.querySelector("#readonly-text");
 
+// GET
+async function getRequest(url) {
+    let response = await fetch(url);
+    let json = await response.json();
+    return JSON.stringify(json, null, 2);
+}
+
+// POST
+async function postRequest(url, body) {
+    console.log(body);
+
+    let response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    return JSON.stringify(await response.json(), null, 2)
+}
+
 // listeners
-btnGetSettingsBtn.onclick = function () {
-    var xhttp = new XMLHttpRequest();
-    // handle response
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            readonlyText.textContent = JSON.stringify(JSON.parse(this.response), null, 2);
-        } else {
-            readonlyText.textContent = "Something went wrong!";
-        }
-    };
-    // request
-    // GET {{apiUrl}}/waInstance{{idInstance}}/getSettings/{{apiTokenInstance}}
-    xhttp.open("GET", apiUrl +
-        "/waInstance" +
-        inputIdInstance.value +
-        "/getSettings/" +
-        inputApiTokenInstance.value);
-
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
+btnGetSettingsBtn.onclick = async () => {
+    let url = `https://api.green-api.com/waInstance${inputIdInstance.value}/getSettings/${inputApiTokenInstance.value}`;
+    readonlyText.textContent = await getRequest(url)
 }
 
-getStateInstanceBtn.onclick = function () {
-    var xhttp = new XMLHttpRequest();
-    // handle response
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            readonlyText.textContent = JSON.stringify(JSON.parse(this.response), null, 2);
-        } else {
-            readonlyText.textContent = "Something went wrong!";
-        }
-    };
-    // request
-    // GET {{apiUrl}}/waInstance{{idInstance}}/getStateInstance/{{apiTokenInstance}}
-    xhttp.open("GET", apiUrl +
-        "/waInstance" +
-        inputIdInstance.value +
-        "/getStateInstance/" +
-        inputApiTokenInstance.value);
-
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
+getStateInstanceBtn.onclick = async () => {
+    let url = `https://api.green-api.com/waInstance${inputIdInstance.value}/getStateInstance/${inputApiTokenInstance.value}`;
+    readonlyText.textContent = await getRequest(url)
 }
 
-sendMessageBtn.onclick = function () {
-    var xhttp = new XMLHttpRequest();
-    // handle response
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            readonlyText.textContent = JSON.stringify(JSON.parse(this.response), null, 2);
-        } else {
-            readonlyText.textContent = "Something went wrong!";
-        }
-    };
-    // request
-    // POST {{apiUrl}}/waInstance{{idInstance}}/sendMessage/{{apiTokenInstance}}
-    xhttp.open("POST", apiUrl +
-        "/waInstance" +
-        inputIdInstance.value +
-        "/sendMessage/"
-        + inputApiTokenInstance.value);
-
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send("{ \"chatId\": \"" + inputMessageNumber.value
-        + "@c.us\", \"message\":\"" + textareaMessage.value + "\" }");
+sendMessageBtn.onclick = async () => {
+    let url = `https://api.green-api.com/waInstance${inputIdInstance.value}/sendMessage/${inputApiTokenInstance.value}`;
+    readonlyText.textContent = await postRequest(url, {
+        chatId: `${inputMessageNumber.value}@c.us`,
+        message: `${textareaMessage.value}`
+    })
 }
 
-sendFileByUrlBtn.onclick = function () {
-    console.log("{ \"chatId\": \"" + inputFileUrlNumber.value
-        + "@c.us\", \"urlFile\":\"" + inputFileUrl.value + "\" }");
-    var xhttp = new XMLHttpRequest();
-    // handle response
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            readonlyText.textContent = JSON.stringify(JSON.parse(this.response), null, 2);
-        } else {
-            readonlyText.textContent = "Something went wrong! Status: " + this.status;
-        }
-    };
-    // request
-    // POST {{apiUrl}}/waInstance{{idInstance}}/sendFileByUrl/{{apiTokenInstance}}
-    xhttp.open("POST", apiUrl +
-        "/waInstance" +
-        inputIdInstance.value +
-        "/sendFileByUrl/"
-        + inputApiTokenInstance.value);
-
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send("{ \"chatId\": \"" + inputFileUrlNumber.value
-        + "@c.us\", \"urlFile\": \"" + inputFileUrl.value + "\", "
-        + "\"fileName\":" + " \"image\", " + "\"caption\": \"image\" }");
+sendFileByUrlBtn.onclick = async () => {
+    let url = `https://api.green-api.com/waInstance${inputIdInstance.value}/sendFileByUrl/${inputApiTokenInstance.value}`;
+    readonlyText.textContent = await postRequest(url, {
+        chatId: `${inputFileUrlNumber.value}@c.us`,
+        urlFile: `${inputFileUrl.value}`,
+        fileName: "img",
+        caption: "img"
+    })
 }
