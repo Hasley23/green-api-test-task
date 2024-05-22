@@ -54,6 +54,7 @@ getStateInstanceBtn.onclick = function () {
         }
     };
     // request
+    // GET {{apiUrl}}/waInstance{{idInstance}}/getStateInstance/{{apiTokenInstance}}
     xhttp.open("GET", apiUrl +
         "/waInstance" +
         inputIdInstance.value +
@@ -75,6 +76,7 @@ sendMessageBtn.onclick = function () {
         }
     };
     // request
+    // POST {{apiUrl}}/waInstance{{idInstance}}/sendMessage/{{apiTokenInstance}}
     xhttp.open("POST", apiUrl +
         "/waInstance" +
         inputIdInstance.value +
@@ -98,7 +100,7 @@ sendFileByUrlBtn.onclick = function () {
             readonlyText.textContent = "Something went wrong! Status: " + this.status;
         }
     };
-    //  request
+    // request
     // POST {{apiUrl}}/waInstance{{idInstance}}/sendFileByUrl/{{apiTokenInstance}}
     xhttp.open("POST", apiUrl +
         "/waInstance" +
