@@ -9,7 +9,7 @@ let inputFileUrlNumber = document.querySelector("#input-file-url-number");
 let inputFileUrl = document.querySelector("#input-file-url");
 
 // buttons
-let btnGetSettingsBtn = document.querySelector("#get-settings-btn");
+let getSettingsBtn = document.querySelector("#get-settings-btn");
 let getStateInstanceBtn = document.querySelector("#get-state-instance-btn");
 
 let sendMessageBtn = document.querySelector("#send-message-btn");
@@ -41,7 +41,7 @@ async function postRequest(url, body) {
 }
 
 // listeners
-btnGetSettingsBtn.onclick = async () => {
+getSettingsBtn.onclick = async () => {
     let url = `https://api.green-api.com/waInstance${inputIdInstance.value}/getSettings/${inputApiTokenInstance.value}`;
     readonlyText.textContent = await getRequest(url)
 }
@@ -64,7 +64,7 @@ sendFileByUrlBtn.onclick = async () => {
     readonlyText.textContent = await postRequest(url, {
         chatId: `${inputFileUrlNumber.value}@c.us`,
         urlFile: `${inputFileUrl.value}`,
-        fileName: "img",
-        caption: "img"
+        fileName: "img-filename",
+        caption: "img-caption"
     })
 }
